@@ -117,6 +117,112 @@ export const LocalCityPage: React.FC<LocalCityPageProps> = ({
         />
       )}
 
+      {/* Schema.org LocalBusiness Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": ["LocalBusiness", "MedicalBusiness"],
+            "name": `Online MMJ Card - ${cityData.cityName} Medical Marijuana Doctor`,
+            "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80",
+            "url": `https://onlinemmjcard.com/medical-marijuana-card-${cityData.slug.replace(/-[a-z]{2}$/i, '')}/`,
+            "telephone": cityData.phone || "(888) 420-6789",
+            "priceRange": "$$",
+            "currenciesAccepted": "USD",
+            "paymentAccepted": "Credit Card, Debit Card, HSA, FSA",
+            "medicalSpecialty": ["Cannabis Medicine", "Primary Care", "Pain Management"],
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": cityData.address.street,
+              "addressLocality": cityData.address.city,
+              "addressRegion": cityData.address.state,
+              "postalCode": cityData.address.zip,
+              "addressCountry": "US"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": cityData.geo.lat,
+              "longitude": cityData.geo.lng
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": cityData.cityName,
+                "sameAs": `https://en.wikipedia.org/wiki/${encodeURIComponent(cityData.cityName)},_${encodeURIComponent(cityData.stateName)}`
+              },
+              {
+                "@type": "AdministrativeArea",
+                "name": cityData.metroArea
+              },
+              {
+                "@type": "State",
+                "name": cityData.stateName
+              }
+            ],
+            "knowsAbout": [
+              "Medical Marijuana Card Evaluations",
+              "Telehealth 420 Physician Consultations",
+              "California Proposition 64 Tax Exemption",
+              "California Health & Safety Code 11362.775 99-Plant Cultivation Exemption",
+              "Same-Day Digital Medical Cannabis Recommendations",
+              "Medical Cannabis Clinic Certification"
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Medical Cannabis Certification & Telehealth Services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "MedicalProcedure",
+                    "name": `New Patient Medical Marijuana Card Evaluation in ${cityData.cityName}`,
+                    "description": `15-minute video telehealth evaluation with a licensed physician for legal medical cannabis certification in ${cityData.cityName}.`
+                  },
+                  "price": "39.99",
+                  "priceCurrency": "USD"
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "MedicalProcedure",
+                    "name": `Medical Marijuana Card Renewal in ${cityData.cityName}`,
+                    "description": `Quick online renewal evaluation for existing California medical cannabis patients in ${cityData.cityName}.`
+                  },
+                  "price": "39.99",
+                  "priceCurrency": "USD"
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "MedicalProcedure",
+                    "name": "99-Plant Extended Medical Cultivation Recommendation",
+                    "description": "Licensed physician recommendation under California Health & Safety Code 11362.775 for high-yield personal medical cannabis growing."
+                  },
+                  "price": "149.99",
+                  "priceCurrency": "USD"
+                }
+              ]
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                "opens": "08:00",
+                "closes": "22:00"
+              }
+            ],
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "14250",
+              "bestRating": "5",
+              "worstRating": "1"
+            }
+          })
+        }}
+      />
+
       {/* Schema.org BreadcrumbList Structured Data */}
       <script
         type="application/ld+json"

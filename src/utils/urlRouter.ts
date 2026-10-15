@@ -213,6 +213,29 @@ export function parseCurrentUrl(explicitPath?: string, explicitSearch?: string, 
   }
 
   // 5. States & Cities Check for pattern "medical-marijuana-card-{target}" or "medical-marijuana-doctor-{target}"
+  // Support subfolder architecture: /medical-marijuana-card-california/los-angeles/ or /california/los-angeles/
+  if (candidate.includes('/')) {
+    const parts = candidate.split('/').filter(Boolean);
+    if (parts.length === 2) {
+      const [parentPart, cityPart] = parts;
+      const isParentState = 
+        parentPart === 'california' || 
+        parentPart === 'medical-marijuana-card-california' || 
+        STATES_DATA.some(s => s.id === parentPart || `medical-marijuana-card-${s.id}` === parentPart);
+      
+      if (isParentState) {
+        const matchedSubCity = LOCAL_CITIES_DATA.find((c) => {
+          const cleanSlug = c.slug.replace(/-[a-z]{2}$/i, '');
+          const cityNameSlug = c.cityName.toLowerCase().replace(/\s+/g, '-');
+          return c.slug === cityPart || cleanSlug === cityPart || cityNameSlug === cityPart;
+        });
+        if (matchedSubCity) {
+          return { type: 'city', slug: matchedSubCity.slug };
+        }
+      }
+    }
+  }
+
   let target = '';
   if (candidate.startsWith('medical-marijuana-card-')) {
     target = candidate.replace('medical-marijuana-card-', '');

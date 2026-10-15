@@ -244,11 +244,47 @@ export const ArticleAmpSpeedView: React.FC<ArticleAmpSpeedViewProps> = ({
                 </h3>
               )}
 
-              {section.content.map((paragraph, pIdx) => (
-                <p key={pIdx} className="leading-relaxed text-xs sm:text-sm text-slate-700">
-                  {paragraph}
-                </p>
-              ))}
+              {section.content.map((paragraph, pIdx) => {
+                const parts: (string | React.ReactNode)[] = [];
+                const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+                let lastIndex = 0;
+                let match;
+
+                while ((match = regex.exec(paragraph)) !== null) {
+                  if (match.index > lastIndex) {
+                    parts.push(paragraph.substring(lastIndex, match.index));
+                  }
+                  const label = match[1];
+                  const url = match[2];
+                  parts.push(
+                    <a
+                      key={`${match.index}-${url}`}
+                      href={url}
+                      onClick={(e) => {
+                        if (url.startsWith('/')) {
+                          e.preventDefault();
+                          window.history.pushState(null, '', url);
+                          window.dispatchEvent(new PopStateEvent('popstate'));
+                        }
+                      }}
+                      className="text-[#16a34a] font-bold underline underline-offset-2 hover:text-[#15803d] transition-colors"
+                    >
+                      {label}
+                    </a>
+                  );
+                  lastIndex = regex.lastIndex;
+                }
+
+                if (lastIndex < paragraph.length) {
+                  parts.push(paragraph.substring(lastIndex));
+                }
+
+                return (
+                  <p key={pIdx} className="leading-relaxed text-xs sm:text-sm text-slate-700">
+                    {parts.length > 0 ? parts : paragraph}
+                  </p>
+                );
+              })}
 
               {section.callout && (
                 <div className={`p-3.5 rounded-xl border text-xs leading-relaxed ${
