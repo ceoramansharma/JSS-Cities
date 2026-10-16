@@ -22,7 +22,7 @@ export const TrustStatsBar: React.FC = () => {
             <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-0.5">
               {stats.stat1Label}
             </div>
-            <div className="text-[11px] text-emerald-700 font-medium">Or 100% Full Refund</div>
+            <div className="text-[11px] text-emerald-700 font-medium">Full Refund If Not Approved</div>
           </div>
 
           {/* Stat 2 */}

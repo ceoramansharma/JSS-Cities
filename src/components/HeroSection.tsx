@@ -12,6 +12,7 @@ import {
 } from '../utils/leadStorage';
 import { getThemeContent, ThemeContent } from '../utils/themeContent';
 import { useDetectedState } from '../utils/geoDetection';
+import { TrustBadgesCarousel } from './TrustBadgesCarousel';
 
 interface HeroSectionProps {
   onOpenApply: (stateId?: string) => void;
@@ -220,7 +221,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               {/* Badge: Same Day Approval */}
               <div className="absolute -top-3.5 right-6 bg-[#008f58] text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 uppercase tracking-wider">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-200" />
-                <span>99% Approved · Same Day</span>
+                <span>Money-Back Guarantee · Same Day</span>
               </div>
 
               {/* Form Title & Subtitle */}
@@ -408,6 +409,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
 
         </div>
+
+        {/* Horizontal Scrolling E-E-A-T Medical & Trust Badges Carousel */}
+        <TrustBadgesCarousel />
 
         {/* Affiliate Redirecting Overlay */}
         {isRedirecting && submittedLead && (

@@ -49,6 +49,10 @@ export function getStateUrl(stateId: string): string {
  */
 export function getCityUrl(citySlug: string): string {
   const cleanCity = citySlug.replace(/-[a-z]{2}$/i, '');
+  const city = LOCAL_CITIES_DATA.find((c) => c.slug === citySlug || c.slug.replace(/-[a-z]{2}$/i, '') === cleanCity);
+  if (city && city.stateId) {
+    return `/medical-marijuana-card-${city.stateId}/${cleanCity}/`;
+  }
   return `/medical-marijuana-card-${cleanCity}/`;
 }
 

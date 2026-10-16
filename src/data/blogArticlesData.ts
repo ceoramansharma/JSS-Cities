@@ -93,7 +93,7 @@ export const BLOG_ARTICLES_DATA: BlogArticle[] = [
     faqList: [
       {
         q: 'Do I really save money if I only buy cannabis once a month?',
-        a: 'If you spend $60 to $80 once a month, you will save roughly $250 a year on taxes and dispensary discounts, which easily covers the one-time $39.99 doctor consultation fee.'
+        a: 'If you spend $60 to $80 once a month, you will save roughly $250 a year on taxes and dispensary discounts, which easily covers the one-time $39 doctor consultation fee.'
       },
       {
         q: 'Can recreational dispensaries see my medical diagnosis?',
@@ -560,7 +560,7 @@ export const BLOG_ARTICLES_DATA: BlogArticle[] = [
         heading: 'City-by-City Savings: Los Angeles, San Francisco, and San Diego',
         content: [
           'Tax savings vary by municipality because local city sales tax and gross receipts tax rates differ across California. In Los Angeles, where the combined sales tax is 9.5%, medical exemption eliminates that fee entirely while qualifying patients for medical compassionate pricing menus.',
-          'In San Francisco and Oakland, where sales taxes reach 8.625% to 10.25%, regular patients save $100 to $130 each month on their standard therapeutic regimen. Over a single calendar year, your initial $39.99 doctor evaluation is repaid multiple times over in pure tax relief.'
+          'In San Francisco and Oakland, where sales taxes reach 8.625% to 10.25%, regular patients save $100 to $130 each month on their standard therapeutic regimen. Over a single calendar year, your initial $39 doctor evaluation is repaid multiple times over in pure tax relief.'
         ]
       }
     ],

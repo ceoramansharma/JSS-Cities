@@ -83,6 +83,8 @@ export interface ThemeContent {
   footer: {
     phone: string;
     hours: string;
+    address: string;
+    email: string;
     copyrightText: string;
     disclaimerText: string;
   };
@@ -90,7 +92,7 @@ export interface ThemeContent {
 
 export const DEFAULT_THEME_CONTENT: ThemeContent = {
   hero: {
-    badgeText: '#1 Telehealth MMJ Doctor & 420 Evaluations Clinic',
+    badgeText: 'Board-Certified Telehealth MMJ Doctors & 420 Evaluations',
     headingPrefix: 'Apply For Your',
     headingHighlight: 'Medical Marijuana Card Online',
     headingSuffix: 'with a Licensed MMJ Doctor',
@@ -107,12 +109,12 @@ export const DEFAULT_THEME_CONTENT: ThemeContent = {
     trustBadge3Sub: 'Same-Day Cert'
   },
   trustStats: {
-    stat1Value: '99.2%',
-    stat1Label: 'Approval Guarantee',
+    stat1Value: '100%',
+    stat1Label: 'Money-Back Guarantee',
     stat2Value: '15 Mins',
     stat2Label: 'Turnaround Time',
-    stat3Value: '50,000+',
-    stat3Label: 'Certified Patients',
+    stat3Value: 'Thousands',
+    stat3Label: 'Patients Evaluated',
     stat4Value: '100% HIPAA',
     stat4Label: 'Compliant & Private'
   },
@@ -160,7 +162,7 @@ export const DEFAULT_THEME_CONTENT: ThemeContent = {
     subheading: 'From your consultation to your recommendation, Online MMJ Card puts you first. We combine expert medical knowledge with compassionate care to deliver an MMJ consultation you can truly depend on.'
   },
   reviews: {
-    heading: 'Trusted by Over 50,000 Patients Nationwide',
+    heading: 'Trusted by Patients Across California and Nationwide',
     ratingScore: '4.9',
     reviewCount: '14,250+'
   },
@@ -171,6 +173,8 @@ export const DEFAULT_THEME_CONTENT: ThemeContent = {
   footer: {
     phone: '(888) 420-6789',
     hours: 'Open 7 Days · 8:00 AM - 10:00 PM EST',
+    address: '10880 Wilshire Blvd, Suite 1101, Los Angeles, CA 90024',
+    email: 'support@onlinemmjcard.com',
     copyrightText: '© 2026 Online MMJ Card Telehealth Inc. All rights reserved.',
     disclaimerText: 'Medical Disclaimer: Online MMJ Card connects patients with state-licensed physicians for medical cannabis evaluations in accordance with applicable state laws. Website content is for informational purposes only and does not constitute medical advice.'
   }

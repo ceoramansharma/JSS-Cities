@@ -1,12 +1,81 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { LocalCityData, LOCAL_CITIES_DATA } from '../data/localSeoData';
 import { STATES_DATA } from '../data/mmjData';
+import { getCityUrl } from '../utils/urlRouter';
+import { useInView } from '../utils/useInView';
 import { 
   MapPin, Phone, ShieldCheck, CheckCircle2, Star, Clock, 
   ArrowRight, DollarSign, Building, FileText, ChevronRight, 
   HelpCircle, AlertCircle, Sparkles, Navigation, Scale, 
-  ChevronDown, Video, HeartHandshake, UserCheck, Stethoscope
+  ChevronDown, Video, HeartHandshake, UserCheck, Stethoscope, ExternalLink
 } from 'lucide-react';
+
+// Lazy-loaded heavy sections for initial load performance
+const LocalCityMapSection = lazy(() => import('./LocalCityMapSection'));
+const LocalCityReviewsSection = lazy(() => import('./LocalCityReviewsSection'));
+
+// Lightweight Skeleton Fallback for Google Maps & Local Entity Desk
+const MapSectionSkeleton: React.FC = () => (
+  <div className="py-16 bg-white border-b border-slate-200 animate-pulse" aria-hidden="true">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div className="space-y-3">
+        <div className="h-6 w-48 bg-emerald-100/70 rounded-full" />
+        <div className="h-9 w-96 max-w-full bg-slate-200 rounded-xl" />
+        <div className="h-4 w-80 max-w-full bg-slate-100 rounded-lg" />
+      </div>
+      <div className="grid lg:grid-cols-12 gap-8 items-stretch">
+        <div className="lg:col-span-5 h-[400px] bg-slate-50 rounded-3xl border border-slate-200 p-6 space-y-4">
+          <div className="h-5 w-40 bg-slate-200 rounded-lg" />
+          <div className="h-7 w-64 bg-slate-200 rounded-lg" />
+          <div className="h-20 bg-slate-100 rounded-2xl" />
+          <div className="h-20 bg-slate-100 rounded-2xl" />
+        </div>
+        <div className="lg:col-span-7 h-[400px] bg-slate-100 rounded-3xl border border-slate-200 flex items-center justify-center">
+          <div className="text-center space-y-2 text-slate-400">
+            <div className="w-10 h-10 mx-auto rounded-full bg-slate-200 animate-bounce flex items-center justify-center text-slate-500 font-bold">
+              📍
+            </div>
+            <div className="text-xs font-bold text-slate-500">Loading Interactive Google Map...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+// Lightweight Skeleton Fallback for Localized Reviews List
+const ReviewsSectionSkeleton: React.FC = () => (
+  <div className="py-16 bg-slate-50 border-b border-slate-200 animate-pulse" aria-hidden="true">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+        <div className="space-y-2">
+          <div className="h-6 w-40 bg-emerald-100/60 rounded-full" />
+          <div className="h-8 w-72 bg-slate-200 rounded-xl" />
+          <div className="h-4 w-96 max-w-full bg-slate-200/60 rounded-lg" />
+        </div>
+        <div className="h-20 w-56 bg-white rounded-2xl border border-slate-200" />
+      </div>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="h-48 bg-white rounded-3xl border border-slate-200 p-6 space-y-3">
+          <div className="flex justify-between">
+            <div className="h-5 w-32 bg-slate-200 rounded-lg" />
+            <div className="h-4 w-24 bg-amber-100 rounded-lg" />
+          </div>
+          <div className="h-4 w-48 bg-slate-200 rounded-lg" />
+          <div className="h-16 bg-slate-50 rounded-xl" />
+        </div>
+        <div className="h-48 bg-white rounded-3xl border border-slate-200 p-6 space-y-3">
+          <div className="flex justify-between">
+            <div className="h-5 w-32 bg-slate-200 rounded-lg" />
+            <div className="h-4 w-24 bg-amber-100 rounded-lg" />
+          </div>
+          <div className="h-4 w-48 bg-slate-200 rounded-lg" />
+          <div className="h-16 bg-slate-50 rounded-xl" />
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 interface LocalCityPageProps {
   cityData: LocalCityData;
@@ -26,6 +95,10 @@ export const LocalCityPage: React.FC<LocalCityPageProps> = ({
   const stateInfo = STATES_DATA.find((s) => s.id === cityData.stateId);
   const [monthlySpend, setMonthlySpend] = useState<number>(200);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+  // Viewport intersection observers to defer offscreen heavy sections and boost mobile LCP
+  const [mapContainerRef, isMapInView] = useInView<HTMLDivElement>({ rootMargin: '300px 0px', triggerOnce: true });
+  const [reviewsContainerRef, isReviewsInView] = useInView<HTMLDivElement>({ rootMargin: '300px 0px', triggerOnce: true });
 
   // Scroll to top on mount
   useEffect(() => {
@@ -65,7 +138,7 @@ export const LocalCityPage: React.FC<LocalCityPageProps> = ({
             "@type": ["MedicalBusiness", "MedicalClinic"],
             "name": `Online MMJ Card - ${cityData.cityName} Telehealth Service`,
             "description": `Connect 100% online with board-certified cannabis physicians in ${cityData.cityName}. Same-day medical marijuana recommendations via encrypted telehealth video.`,
-            "url": `https://onlinemmjcard.com/medical-marijuana-card-${cityData.slug.replace(/-[a-z]{2}$/i, '')}/`,
+            "url": `https://onlinemmjcard.com${getCityUrl(cityData.slug)}`,
             "telephone": "(888) 420-6789",
             "priceRange": "$$",
             "medicalSpecialty": ["Cannabis Medicine", "Primary Care", "Pain Management"],
@@ -126,7 +199,7 @@ export const LocalCityPage: React.FC<LocalCityPageProps> = ({
             "@type": ["LocalBusiness", "MedicalBusiness"],
             "name": `Online MMJ Card - ${cityData.cityName} Medical Marijuana Doctor`,
             "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80",
-            "url": `https://onlinemmjcard.com/medical-marijuana-card-${cityData.slug.replace(/-[a-z]{2}$/i, '')}/`,
+            "url": `https://onlinemmjcard.com${getCityUrl(cityData.slug)}`,
             "telephone": cityData.phone || "(888) 420-6789",
             "priceRange": "$$",
             "currenciesAccepted": "USD",
@@ -179,7 +252,7 @@ export const LocalCityPage: React.FC<LocalCityPageProps> = ({
                     "name": `New Patient Medical Marijuana Card Evaluation in ${cityData.cityName}`,
                     "description": `15-minute video telehealth evaluation with a licensed physician for legal medical cannabis certification in ${cityData.cityName}.`
                   },
-                  "price": "39.99",
+                  "price": "39.00",
                   "priceCurrency": "USD"
                 },
                 {
@@ -189,7 +262,7 @@ export const LocalCityPage: React.FC<LocalCityPageProps> = ({
                     "name": `Medical Marijuana Card Renewal in ${cityData.cityName}`,
                     "description": `Quick online renewal evaluation for existing California medical cannabis patients in ${cityData.cityName}.`
                   },
-                  "price": "39.99",
+                  "price": "34.00",
                   "priceCurrency": "USD"
                 },
                 {
@@ -362,7 +435,7 @@ export const LocalCityPage: React.FC<LocalCityPageProps> = ({
                   <div className="text-right">
                     <div className="text-xs text-slate-400">Consultation Fee</div>
                     <div className="text-2xl font-extrabold text-[#16a34a]">
-                      ${stateInfo ? stateInfo.price : '39.99'}
+                      ${stateInfo ? stateInfo.price : '39'}
                     </div>
                   </div>
                 </div>
@@ -561,6 +634,17 @@ export const LocalCityPage: React.FC<LocalCityPageProps> = ({
         </div>
       </section>
 
+      {/* Viewport-Gated Google Maps & Local NAP Verification Section */}
+      <div ref={mapContainerRef} className="min-h-[460px]">
+        {isMapInView ? (
+          <Suspense fallback={<MapSectionSkeleton />}>
+            <LocalCityMapSection cityData={cityData} />
+          </Suspense>
+        ) : (
+          <MapSectionSkeleton />
+        )}
+      </div>
+
       {/* 3 Step Telehealth Process */}
       <section className="py-16 bg-slate-50 border-b border-slate-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -663,6 +747,21 @@ export const LocalCityPage: React.FC<LocalCityPageProps> = ({
           </div>
         </div>
       </section>
+
+      {/* Viewport-Gated Localized Patient Reviews Section */}
+      <div ref={reviewsContainerRef} className="min-h-[420px]">
+        {isReviewsInView ? (
+          <Suspense fallback={<ReviewsSectionSkeleton />}>
+            <LocalCityReviewsSection 
+              cityName={cityData.cityName} 
+              stateName={cityData.stateName}
+              onOpenApply={() => onOpenApply(cityData.stateId, 'new-patient')}
+            />
+          </Suspense>
+        ) : (
+          <ReviewsSectionSkeleton />
+        )}
+      </div>
 
       {/* Clinical FAQs */}
       <section className="py-16 bg-slate-50 border-b border-slate-200">

@@ -1166,6 +1166,7 @@ if (!function_exists('online_mmj_handle_virtual_app_routes')) {
 
 if (!function_exists('online_mmj_register_app_rewrite_rules')) {
     function online_mmj_register_app_rewrite_rules() {
+        add_rewrite_rule('^medical-marijuana-card-([^/]+)/([^/]+)/?$', 'index.php?mmj_entity=$matches[2]&mmj_parent=$matches[1]&mmj_type=city_subfolder', 'top');
         add_rewrite_rule('^medical-marijuana-card-([^/]+)/?$', 'index.php?mmj_entity=$matches[1]&mmj_type=card', 'top');
         add_rewrite_rule('^medical-marijuana-doctor-([^/]+)/?$', 'index.php?mmj_entity=$matches[1]&mmj_type=doctor', 'top');
         add_rewrite_rule('^medical-marijuana-for-([^/]+)/?$', 'index.php?mmj_entity=$matches[1]&mmj_type=condition', 'top');
@@ -1174,6 +1175,7 @@ if (!function_exists('online_mmj_register_app_rewrite_rules')) {
 
     add_filter('query_vars', function($vars) {
         $vars[] = 'mmj_entity';
+        $vars[] = 'mmj_parent';
         $vars[] = 'mmj_type';
         return $vars;
     });

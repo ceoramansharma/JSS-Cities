@@ -31,6 +31,7 @@ import { WhyTrustSection } from './components/WhyTrustSection';
 import { SkeletonScreen } from './components/SkeletonScreen';
 import { useSectionToggles, DEFAULT_SECTION_TOGGLES } from './utils/themeContent';
 import { getPageBySlug } from './utils/customPagesStore';
+import { MobileStickyCtaBar } from './components/MobileStickyCtaBar';
 
 // Sub-pages
 import { LocalCityPage } from './components/LocalCityPage';
@@ -833,6 +834,21 @@ export default function App({ isHeadlessMode = false }: AppProps) {
         isOpen={isLeadManagerOpen}
         onClose={() => setIsLeadManagerOpen(false)}
       />
+
+      {/* High-Conversion Mobile Sticky CTA Bar */}
+      {currentRoute.type !== 'book' && (
+        <MobileStickyCtaBar
+          onOpenBook={() => {
+            if (handleNavigateBook) {
+              handleNavigateBook(selectedStateId || 'california');
+            } else {
+              handleOpenApply(selectedStateId || 'california');
+            }
+          }}
+          statePrice={39}
+          stateCode="CA"
+        />
+      )}
 
       {/* Elementor / Divi Pro Style Visual Theme Customizer (Admin only) */}
       <ThemeVisualBuilder

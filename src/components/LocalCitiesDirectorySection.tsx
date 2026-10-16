@@ -49,6 +49,8 @@ export const LocalCitiesDirectorySection: React.FC<LocalCitiesDirectorySectionPr
         slugLower.includes('chula-vista') || 
         slugLower.includes('huntington') || 
         slugLower.includes('glendale') || 
+        slugLower.includes('santa-monica') || 
+        slugLower.includes('burbank') || 
         slugLower.includes('santa-clarita') || 
         slugLower.includes('torrance') || 
         slugLower.includes('oxnard') || 

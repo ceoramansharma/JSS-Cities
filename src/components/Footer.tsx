@@ -93,6 +93,19 @@ export const Footer: React.FC<FooterProps> = ({
               </span>
             </div>
 
+            {/* Physical Clinic Headquarters & Verification Desk */}
+            <div className="pt-2 space-y-1 text-[11px] text-slate-400">
+              <div className="flex items-center gap-1.5 font-semibold text-slate-300">
+                <MapPin className="w-3.5 h-3.5 text-[#16a34a] shrink-0" />
+                <span>{footerContent.address}</span>
+              </div>
+              <div className="flex items-center gap-2 text-slate-400 text-[11px] pl-5">
+                <a href={`tel:${footerContent.phone.replace(/[^0-9]/g, '')}`} className="hover:text-[#16a34a] transition-colors">{footerContent.phone}</a>
+                <span>·</span>
+                <span className="text-emerald-400 font-medium">HIPAA Telehealth</span>
+              </div>
+            </div>
+
             <div className="pt-2 text-xs text-slate-500">
               {footerContent.copyrightText}
             </div>

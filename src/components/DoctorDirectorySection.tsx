@@ -18,6 +18,7 @@ export const DoctorDirectorySection: React.FC<DoctorDirectorySectionProps> = ({ 
       bio: 'A licensed general practitioner with a compassionate, patient-focused approach while conducting state-compliant medical marijuana evaluations.',
       initials: 'JM',
       licensedStates: ['California', 'New York', 'Florida', 'Ohio', 'Pennsylvania'],
+      licenseNumber: 'Medical Board of California #C54289 / NY #284910',
       npi: '1948201948',
       education: 'MD - University of Washington School of Medicine'
     },
@@ -26,9 +27,10 @@ export const DoctorDirectorySection: React.FC<DoctorDirectorySectionProps> = ({ 
       name: 'Dr. Kevin Kargman, DO',
       title: 'Medical Cannabis Evaluating Physician',
       experience: '19 Years',
-      bio: 'A certified pediatrician with extensive clinical experience, providing thorough, regulation-compliant evaluations.',
+      bio: 'A certified osteopathic physician with extensive clinical experience, providing thorough, regulation-compliant evaluations.',
       initials: 'KK',
       licensedStates: ['California', 'Oklahoma', 'Missouri', 'Illinois'],
+      licenseNumber: 'Osteopathic Medical Board of California #20A14980',
       npi: '1849201842',
       education: 'DO - Philadelphia College of Osteopathic Medicine'
     },
@@ -40,6 +42,7 @@ export const DoctorDirectorySection: React.FC<DoctorDirectorySectionProps> = ({ 
       bio: 'An internal medicine specialist who conducts thorough medical evaluations based on detailed medical history and qualifying conditions.',
       initials: 'AT',
       licensedStates: ['Texas', 'Florida', 'Georgia', 'Virginia'],
+      licenseNumber: 'Texas Medical Board #R8492 / FL #ME142890',
       npi: '1748291039',
       education: 'MD - Johns Hopkins University School of Medicine'
     },
@@ -51,6 +54,7 @@ export const DoctorDirectorySection: React.FC<DoctorDirectorySectionProps> = ({ 
       bio: 'A family medicine physician who provides detailed evaluations, focusing on patient medical history and symptoms to determine eligibility in accordance with state law.',
       initials: 'JD',
       licensedStates: ['California', 'New York', 'Connecticut', 'Maryland'],
+      licenseNumber: 'Medical Board of California #A138902 / NY #301928',
       npi: '1648291028',
       education: 'MD - Georgetown University School of Medicine'
     }
@@ -152,6 +156,7 @@ export const DoctorDirectorySection: React.FC<DoctorDirectorySectionProps> = ({ 
               </p>
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5">
                 <div><strong>Education:</strong> {selectedDoctor.education}</div>
+                <div><strong>State Medical License:</strong> <span className="font-semibold text-emerald-800">{selectedDoctor.licenseNumber}</span></div>
                 <div><strong>NPI Number:</strong> <span className="font-mono">{selectedDoctor.npi}</span></div>
                 <div><strong>Licensed Telehealth States:</strong> {selectedDoctor.licensedStates.join(', ')}</div>
               </div>

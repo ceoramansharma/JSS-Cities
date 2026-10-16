@@ -32,9 +32,17 @@ export function getRouteSEOMeta(route: AppRoute): PageSEOMeta {
     case 'state': {
       const state = STATES_DATA.find((s) => s.id === route.stateId) || STATES_DATA[0];
       const cleanPath = getStateUrl(state.id);
+      if (state.id === 'california') {
+        return {
+          title: 'California Medical Marijuana Card Online | 420 Evaluations CA ($39)',
+          description: 'Get your official California medical marijuana card online for $39 in 15 mins. Board-certified CA 420 doctors, same-day approval & save up to 34.5% on cannabis taxes.',
+          canonicalPath: cleanPath,
+          keywords: 'california medical marijuana card, ca mmj card, 420 evaluations california, los angeles medical marijuana card, get mmj card california, $39 mmj card california',
+        };
+      }
       return {
         title: `Medical Marijuana Card in ${state.name} | Online 420 Doctor Evaluation`,
-        description: `Get your official ${state.name} medical marijuana card online starting at $${state.price}. Same-day approval with licensed ${state.name} cannabis physicians or 100% money back.`,
+        description: `Get your official ${state.name} medical marijuana card online starting at $${state.price}. Same-day approval with licensed ${state.name} cannabis physicians with 100% money-back guarantee.`,
         canonicalPath: cleanPath,
         keywords: `${state.name} medical marijuana card, ${state.name} mmj card, get mmj card ${state.name}, 420 evaluation ${state.name}, ${state.name} cannabis doctor`,
       };
@@ -44,10 +52,10 @@ export function getRouteSEOMeta(route: AppRoute): PageSEOMeta {
       const city = LOCAL_CITIES_DATA.find((c) => c.slug === route.slug) || LOCAL_CITIES_DATA[0];
       const cleanPath = getCityUrl(city.slug);
       return {
-        title: `Medical Marijuana Card ${city.cityName}, ${city.stateCode} | 420 Doctor Telehealth`,
-        description: `Get your official medical marijuana card in ${city.cityName}, ${city.stateCode} online in 15 minutes. Certified local telehealth doctors, 99% approval, full refund guarantee.`,
+        title: city.title || `Medical Marijuana Card ${city.cityName}, ${city.stateCode} | 420 Doctor Telehealth`,
+        description: city.metaDesc || `Get your official medical marijuana card in ${city.cityName}, ${city.stateCode} online in 15 minutes. Certified local telehealth doctors, same-day approval, 100% money-back guarantee.`,
         canonicalPath: cleanPath,
-        keywords: `medical marijuana card ${city.cityName}, ${city.cityName} mmj card, 420 evaluation ${city.cityName}, cannabis doctor ${city.cityName} ${city.stateCode}`,
+        keywords: (city.localKeywords && city.localKeywords.join(', ')) || `medical marijuana card ${city.cityName}, ${city.cityName} mmj card, 420 evaluation ${city.cityName}`,
       };
     }
 
@@ -115,8 +123,8 @@ export function getRouteSEOMeta(route: AppRoute): PageSEOMeta {
     case 'home':
     default: {
       return {
-        title: 'Medical Marijuana Card Online | 420 Evaluations with Top MMJ Doctor',
-        description: 'Get your legal medical marijuana card online in 15 mins with board-certified MMJ doctors. Fast 420 evaluations, medical cannabis card renewals & 99% approval guaranteed.',
+        title: 'Medical Marijuana Card Online | Same-Day 420 Doctor Evaluations ($39)',
+        description: 'Get your official legal medical marijuana card online in 15 minutes. Board-certified MMJ doctors, 100% HIPAA-compliant telehealth, and 100% money-back guarantee.',
         canonicalPath: '/',
         keywords: 'medical marijuana card, medical marijuana doctor, mmj card, 420 evaluations, mmj doctor, medical cannabis card',
       };

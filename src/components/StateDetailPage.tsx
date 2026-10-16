@@ -210,6 +210,131 @@ export const StateDetailPage: React.FC<StateDetailPageProps> = ({
         </div>
       </section>
 
+      {/* Dedicated Section for Los Angeles & Local Tax Savings (California Patients) */}
+      {stateData.id === 'california' && (
+        <section className="py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-950 text-white border-b border-emerald-900/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-12 gap-10 items-center">
+              
+              <div className="lg:col-span-7 space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+                  <DollarSign className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Los Angeles & Southern California Local Tax Relief</span>
+                </div>
+
+                <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white leading-tight">
+                  Save Up to <span className="text-emerald-400">34.5% in Taxes</span> at Los Angeles Dispensaries
+                </h2>
+
+                <p className="text-base text-slate-300 leading-relaxed">
+                  In Los Angeles and surrounding municipalities, recreational cannabis purchasers face one of the steepest tax burdens in the country: a <strong>9.5% local sales tax</strong>, plus the <strong>15% California state excise tax</strong>, and an additional <strong>10% City of Los Angeles gross receipts business tax</strong> (totaling up to <strong>34.5%</strong> in cumulative retail markups).
+                </p>
+
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  Holding an official California medical marijuana recommendation eliminates the 9.5% sales tax requirement (under Prop 64 and Rev & Tax Code § 34011) and grants you immediate access to patient-only compassion pricing, higher purchase limits (up to 8 ounces daily), and clinical-strength tinctures and topicals across Los Angeles County.
+                </p>
+
+                {/* City Tax Comparison Mini Table */}
+                <div className="bg-slate-800/80 rounded-2xl p-4 border border-slate-700/80 space-y-2 text-xs">
+                  <div className="font-extrabold text-emerald-400 uppercase tracking-wider text-[11px]">
+                    $100 Cannabis Purchase Tax Comparison:
+                  </div>
+                  <div className="grid grid-cols-2 gap-3 text-slate-200">
+                    <div className="bg-rose-950/40 border border-rose-900/40 rounded-xl p-3">
+                      <div className="text-[11px] text-rose-300 font-bold">Adult-Use (Recreational)</div>
+                      <div className="text-lg font-black text-rose-400">$134.50</div>
+                      <div className="text-[10px] text-slate-400">Includes 9.5% sales + excise + city tax</div>
+                    </div>
+                    <div className="bg-emerald-950/50 border border-emerald-500/40 rounded-xl p-3">
+                      <div className="text-[11px] text-emerald-300 font-bold">With Medical MMJ Card</div>
+                      <div className="text-lg font-black text-emerald-400">$115.00</div>
+                      <div className="text-[10px] text-emerald-200">Exempt from 9.5% sales tax</div>
+                    </div>
+                  </div>
+                  <div className="text-[11px] text-slate-400 pt-1">
+                    Regular patients save <strong className="text-white">$1,200 to $1,500+ every year</strong> on dispensary purchases and home deliveries.
+                  </div>
+                </div>
+
+                {/* Priority Subfolder City Links */}
+                <div className="pt-2">
+                  <div className="text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">
+                    Explore Priority Los Angeles Subfolder Pages:
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      { name: 'Los Angeles', slug: 'los-angeles-ca' },
+                      { name: 'Long Beach', slug: 'long-beach-ca' },
+                      { name: 'Glendale', slug: 'glendale-ca' },
+                      { name: 'Santa Monica', slug: 'santa-monica-ca' },
+                      { name: 'Pasadena', slug: 'pasadena-ca' },
+                      { name: 'Burbank', slug: 'burbank-ca' }
+                    ].map((c) => (
+                      <button
+                        key={c.slug}
+                        onClick={() => onNavigateCity(c.slug)}
+                        className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-emerald-600 text-xs font-semibold text-slate-200 hover:text-white transition-all cursor-pointer border border-slate-700 hover:border-emerald-500"
+                      >
+                        {c.name} Guide &rarr;
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Right Side: Fast Telehealth Booking Card */}
+              <div className="lg:col-span-5">
+                <div className="bg-white text-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-5">
+                  <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                    <div>
+                      <div className="text-xs font-bold text-slate-400 uppercase">California Telehealth</div>
+                      <h3 className="text-lg font-black text-slate-900">Same-Day 420 Evaluation</h3>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-xs text-slate-400">Total Fee</div>
+                      <div className="text-2xl font-black text-[#16a34a]">$39</div>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-2.5 text-xs text-slate-600">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#16a34a] shrink-0" />
+                      <span>10-15 minute video evaluation with licensed CA physician</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#16a34a] shrink-0" />
+                      <span>Signed recommendation PDF emailed immediately</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#16a34a] shrink-0" />
+                      <span>Accepted at all licensed CA storefronts & delivery services</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#16a34a] shrink-0" />
+                      <span>Pay only if approved — 100% money-back guarantee</span>
+                    </li>
+                  </ul>
+
+                  <button
+                    onClick={() => onOpenApply('california', 'new-patient')}
+                    className="w-full py-4 bg-[#16a34a] hover:bg-[#15803d] text-white text-xs font-black uppercase tracking-wider rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                  >
+                    <span>Get California MMJ Card - $39</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+
+                  <div className="text-center text-[11px] text-slate-400">
+                    No hidden fees. Valid statewide for 1 full year.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Local City Landing Pages in this State */}
       {citiesInState.length > 0 && (
         <section className="py-14 bg-slate-50 border-b border-slate-200">

@@ -772,6 +772,94 @@ export const LOCAL_CITIES_DATA: LocalCityData[] = [
       {
         q: 'How long is my Glendale recommendation valid?',
         a: 'Your California physician recommendation is valid for a full 365 days (1 year) at all licensed dispensaries and delivery services statewide.'
+      },
+      {
+        q: 'Which nearby dispensaries accept the Glendale medical card?',
+        a: 'Our physician recommendation is accepted at all licensed storefront dispensaries in adjacent Eagle Rock, Silver Lake, North Hollywood, Los Angeles, and across California.'
+      }
+    ]
+  },
+  {
+    slug: 'santa-monica-ca',
+    cityName: 'Santa Monica',
+    stateId: 'california',
+    stateName: 'California',
+    stateCode: 'CA',
+    metroArea: 'Westside Los Angeles & Coastal Corridor',
+    title: 'Santa Monica Medical Marijuana Doctor | 420 Evaluations Online',
+    metaDesc: 'Get your Santa Monica medical marijuana card online in 15 mins. Board-certified CA doctors, same-day digital rec, save up to 34.5% at Westside dispensaries.',
+    h1: 'Santa Monica Medical Marijuana Card & 420 Doctor Telehealth',
+    heroSnippet: 'Skip the Pacific Coast Highway traffic. Connect with licensed California cannabis physicians from your smartphone in Santa Monica. Same-day digital recommendations for dispensary shopping and doorstep delivery.',
+    localKeywords: [
+      'santa monica medical marijuana card',
+      '420 doctor santa monica',
+      'medical cannabis card westside la',
+      'santa monica 420 evaluations',
+      'cannabis doctor venice santa monica',
+      'santa monica weed delivery card'
+    ],
+    localTaxSavingsPercent: 'Up to 34.5%',
+    localSalesTaxRate: '10.25% Sales + 15% State Excise + 8% City Business Tax',
+    medicalTaxRate: 'Medical cardholders save 10.25% on state/local sales taxes with physician certification',
+    sampleYearlySavings: '$1,380/year',
+    popularDispensaryAreas: ['Downtown Santa Monica & 3rd St Promenade', 'Ocean Park & Main St', 'Venice & Rose Ave Corridor', 'Brentwood & West LA Border', 'Mid-City Santa Monica', 'Pico Blvd'],
+    geo: { lat: 34.0195, lng: -118.4912 },
+    address: { street: '1680 Ocean Ave', city: 'Santa Monica', state: 'CA', zip: '90401' },
+    phone: '(310) 420-9180',
+    cityFaqs: [
+      {
+        q: 'Can Santa Monica patients order medical marijuana delivery straight to their door?',
+        a: 'Yes. State-licensed cannabis delivery operators serve all Santa Monica neighborhoods (Ocean Park, Downtown, North of Montana, Pico) and deliver directly to residential addresses with a valid doctor recommendation.'
+      },
+      {
+        q: 'Which dispensaries accept our Santa Monica medical cannabis recommendation?',
+        a: 'Every licensed California dispensary in West Los Angeles, Venice, Culver City, and West Hollywood legally accepts our signed physician recommendation and digital 24/7 verification letter.'
+      },
+      {
+        q: 'How much do Santa Monica medical cannabis patients save on taxes?',
+        a: 'Recreational buyers face combined taxes of ~33% to 35% on the Westside. Having an official medical cannabis recommendation saves you up to 10.25% in local and state sales taxes while unlocking patient-only bulk compassion pricing.'
+      }
+    ]
+  },
+  {
+    slug: 'burbank-ca',
+    cityName: 'Burbank',
+    stateId: 'california',
+    stateName: 'California',
+    stateCode: 'CA',
+    metroArea: 'San Fernando Valley & Media District',
+    title: 'Burbank Medical Marijuana Card Online | 420 Doctor Evaluations',
+    metaDesc: 'Burbank medical marijuana doctor evaluations online. 15-minute video call with licensed CA physicians, instant digital certificate, save on cannabis taxes.',
+    h1: 'Burbank Medical Marijuana Card & Telehealth 420 Evaluations',
+    heroSnippet: 'Certified telehealth medical cannabis evaluations for Burbank and the San Fernando Valley. Complete your 420 evaluation in 15 minutes and receive your official digital California recommendation immediately.',
+    localKeywords: [
+      'burbank medical marijuana card',
+      '420 doctor burbank',
+      'burbank cannabis evaluations',
+      'san fernando valley mmj doctor',
+      'burbank medical cannabis recommendation',
+      '420 clinic burbank ca'
+    ],
+    localTaxSavingsPercent: 'Up to 34%',
+    localSalesTaxRate: '10.25% Sales + 15% State Excise + City Cannabis Tax',
+    medicalTaxRate: 'Medical patients save 10.25% sales tax plus access patient-only discounts',
+    sampleYearlySavings: '$1,320/year',
+    popularDispensaryAreas: ['Downtown Burbank & San Fernando Blvd', 'Media District & Warner Bros Area', 'Magnolia Park', 'Hollywood Way & Airport Corridor', 'North Hollywood Border', 'Toluca Lake'],
+    geo: { lat: 34.1808, lng: -118.3090 },
+    address: { street: '275 E Olive Ave', city: 'Burbank', state: 'CA', zip: '91502' },
+    phone: '(818) 420-8840',
+    cityFaqs: [
+      {
+        q: 'How does medical cannabis delivery work in Burbank?',
+        a: 'While Burbank maintains specific storefront dispensary zoning, licensed California courier delivery services legally deliver medical cannabis throughout Burbank directly to residential homes for verified patients.'
+      },
+      {
+        q: 'How fast can I use my Burbank medical marijuana card?',
+        a: 'Immediately upon completing your 10 to 15 minute video appointment, your signed physician recommendation letter is emailed as a PDF with a 24/7 verification barcode for instant online delivery orders or dispensary visits.'
+      },
+      {
+        q: 'What qualifying conditions are recognized in Burbank and California?',
+        a: 'California physicians have broad discretion under Senate Bill 420 to recommend medical cannabis for chronic pain, anxiety, insomnia, arthritis, migraines, PTSD, cancer, fibromyalgia, and any persistent symptom that limits daily life activities.'
       }
     ]
   },
